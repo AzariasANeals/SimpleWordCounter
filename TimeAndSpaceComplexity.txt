@@ -1,0 +1,59 @@
+Time and Space Complexity:
+
+Time Complexity:
+
+1. Lowercasing the input
+
+ We use "paragraph.toLowerCase();"
+
+ This means that Lowercasing scans each character once, therefore it is a O(N).
+
+2. Splitting the paragraph
+
+ We use "paragraph.split(" ");"
+
+ This means that Split requires scanning the entire input once, therefore it is also O(N).
+
+ 3. Counting frequency using HashMap
+
+  "for each word -> buffer.put(...)"
+
+  This means that each insertion/increment in a HashMap is O(1) in the average case.
+  Done for W words -> O(W)
+
+  4. Sorting using a TreeMap
+
+  We use "sorted.put(key, value);" 
+
+  This means that insertion into a TreeMap is O(log U)
+  Done for U unique words -> O(U log U).
+
+  5. Printing
+  Finally we print our unique words, which is a O(U) time complexity.
+
+Space Complexity:
+
+1. Storing the words array
+   - Split creates an array of size W -> O(W).
+  
+2. HashMap(wordCounter)
+   - Stores U unique keys -> O(U)
+
+3. TreeMap(sorted)
+   - Stores U entries -> O(U)
+
+4. Paragraph string
+   - Stores N characters -> O(N)
+  
+
+Possible Refinement:
+- We could add an additional error condition that will check if a String is used for a word, so that empty "" will not be counted as words.
+- We could also use only TreeMap and not HashMap, because TreeMap keeps the keys sorted automatically. So we do not need to copy the HashMap later.
+- We would update our counts like this:
+-     TreeMap<String, Integer> wordCounter = new TreeMap<>();
+
+-     for (String w: words){
+-           wordCounter.put(w, wordCounter.getOrDefault(w, 0) + 1);
+-     }
+
+- 
